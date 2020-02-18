@@ -1,7 +1,9 @@
 import logging
 import json
-from channels.generic.websocket import AsyncWebsocketConsumer
 
+from channels.auth import login
+from channels.generic.websocket import AsyncWebsocketConsumer
+from django.core.exceptions import PermissionDenied
 
 logger = logging.getLogger(__name__)
 
@@ -11,6 +13,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
         self.user = self.scope['user']
+        if not self.user.is_authenticated:
+            raise PermissionDenied()
         logger.info(
             'Connect room_name=%s channel_name=%s user=%s',
             self.room_name,
