@@ -134,6 +134,7 @@ CHANNEL_LAYERS = {
 }
 
 LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'chat:index'
 
 
 LOGGING = {

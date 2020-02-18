@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat example</title>
+</head>
+<body>
+    <div style="background: lightcyan; padding: 10px; margin-bottom: 20px">
+        {{ user }} [<a href="{% url 'users:logout' %}">Logout</a>]
+    </div>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
